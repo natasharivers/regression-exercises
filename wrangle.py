@@ -39,10 +39,11 @@ def get_telco_data():
 
 ############################ Wrangle Function ##############################
 
+
 def wrangle_telco(df):
 
     #acquire data
-    df = acquire.get_telco_data()
+    df = get_telco_data(df)
 
     #replace blank spaces and special characters
     df = df.replace(r'^\s*$', np.nan, regex=True)

@@ -51,11 +51,11 @@ def split_data(df):
 
 
 def wrangle_telco():
-'''
-This function checks to see if telco_churn.csv already exists, 
-if it does not, one is created
-then the data is cleaned and the dataframe is returned
-'''
+    '''
+    This function checks to see if telco_churn.csv already exists, 
+    if it does not, one is created
+    then the data is cleaned and the dataframe is returned
+    '''
     #check to see if telco_churn.csv already exist
     if.os.path.isfile(telco_churn.csv):
         df = pd.read_csv('telco_churn.csv', index_col=0)

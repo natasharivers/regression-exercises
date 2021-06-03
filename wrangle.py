@@ -63,7 +63,7 @@ def wrangle_telco():
     else:
 
         #creates new csv if one does not already exist
-        df = new_telco_data()
+        df = get_telco_data()
         df.to_csv('telco_churn.csv')
 
     #replace blank spaces and special characters

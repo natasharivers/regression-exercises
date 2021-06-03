@@ -57,7 +57,7 @@ def wrangle_telco():
     then the data is cleaned and the dataframe is returned
     '''
     #check to see if telco_churn.csv already exist
-    if os.path.isfile(telco_churn.csv):
+    if os.path.isfile('telco_churn.csv'):
         df = pd.read_csv('telco_churn.csv', index_col=0)
     
     else:

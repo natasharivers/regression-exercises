@@ -47,7 +47,7 @@ def split_data(df):
     train, validate = train_test_split(train_val, train_size=0.7, random_state=123)
     return train, validate, test
 
-############################ Wrangle Function ##############################
+############################ Wrangle Telco Function ##############################
 
 
 def wrangle_telco():
@@ -77,3 +77,23 @@ def wrangle_telco():
 
     return df
 
+#################################### ZILLOW #####################################
+
+############################ Acquire Zillow Function ##############################
+
+def get_zillow_data():
+    '''
+    This function reads in the Zillow data from the Codeup db
+    and returns a pandas DataFrame with cbedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, and fips
+    for all Single Family Residential properties.
+    '''
+    
+    sql_query = '''
+    SELECT bedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, and fips
+    FROM properties_2017
+    WHERE propertylandusetypeid = 261
+    '''
+    return pd.read_sql(sql_query, get_connection('zillow'))
+
+
+############################ Wrangle Zillow Function ##############################

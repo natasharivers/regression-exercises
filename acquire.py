@@ -34,4 +34,19 @@ def get_telco_data():
     WHERE contract_type_id LIKE '3'
     '''
     return pd.read_sql(sql_query, get_connection('telco_churn'))
+    
+############################ Acquire Zillow Function ##############################
 
+def get_zillow_data():
+    '''
+    This function reads in the Zillow data from the Codeup db
+    and returns a pandas DataFrame with cbedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, and fips
+    for all Single Family Residential properties.
+    '''
+    
+    sql_query = '''
+    SELECT bedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, and fips
+    FROM properties_2017
+    WHERE propertylandusetypeid = 261
+    '''
+    return pd.read_sql(sql_query, get_connection('zillow'))

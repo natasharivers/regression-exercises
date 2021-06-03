@@ -97,3 +97,26 @@ def get_zillow_data():
 
 
 ############################ Wrangle Zillow Function ##############################
+def wrangle_zillow():
+    '''
+    This function checks to see if zillow.csv already exists, 
+    if it does not, one is created
+    then the data is cleaned and the dataframe is returned
+    '''
+    #check to see if telco_churn.csv already exist
+    if os.path.isfile('zillow.csv'):
+        zillow_df = pd.read_csv('zillow.csv', index_col=0)
+    
+    else:
+
+        #creates new csv if one does not already exist
+        zillow_df = get_zillow_data()
+        zillow_df.to_csv('zillow.csv')
+
+    #replace blank spaces and special characters
+    zillow_df = zillow_df.replace(r'^\s*$', np.nan, regex=True)
+
+    #drop null values- at most there were 9000 nulls (this is only 0.5% of 2.1M)
+    zillow_df = zillow_df.dropna()
+
+    return zillow_df

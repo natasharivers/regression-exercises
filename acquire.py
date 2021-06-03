@@ -28,12 +28,12 @@ def get_telco_data():
     for customers who have 2-year contracts.
     '''
     
-    sql_query = '''
+    telco_query = '''
     SELECT customer_id, monthly_charges, tenure, total_charges
     FROM customers
     WHERE contract_type_id LIKE '3'
     '''
-    return pd.read_sql(sql_query, get_connection('telco_churn'))
+    return pd.read_sql(telco_query, get_connection('telco_churn'))
     
 ############################ Acquire Zillow Function ##############################
 
@@ -44,9 +44,9 @@ def get_zillow_data():
     for all Single Family Residential properties.
     '''
     
-    sql_query = '''
-    SELECT bedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, and fips
+    zillow_query = '''
+    SELECT bedroomcnt, bathroomcnt, calculatedfinishedsquarefeet, taxvaluedollarcnt, yearbuilt, taxamount, fips
     FROM properties_2017
     WHERE propertylandusetypeid = 261
     '''
-    return pd.read_sql(sql_query, get_connection('zillow'))
+    return pd.read_sql(zillow_query, get_connection('zillow'))

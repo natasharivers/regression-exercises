@@ -39,7 +39,7 @@ def get_telco_data():
 
 ############################ Wrangle Function ##############################
 
-def wrangle_telco():
+def wrangle_telco(df):
 
     #acquire data
     df = acquire.get_telco_data()
@@ -55,4 +55,3 @@ def wrangle_telco():
 
     return df
 
-    

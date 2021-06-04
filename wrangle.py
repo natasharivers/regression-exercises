@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import os
 from pydataset import data
+from sklearn.model_selection import train_test_split
 
 # acquire
 import acquire

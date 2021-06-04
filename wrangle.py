@@ -120,13 +120,11 @@ def split_data(df):
     returns: three pandas dataframes, train, test, and validate
     '''
     #create train_validate and test datasets
-    train_validate, test = train_test_split(df, train_size=0.8, random_state=123)
+    train, test = train_test_split(df, train_size = 0.8, random_state = 123)
     #create train and validate datasets
-    train, validate = train_test_split(train_val, train_size=0.7, random_state=123)
-
+    train, validate = train_test_split(train, train_size = 0.7, random_state = 123)
 
     # Have function print datasets shape
-
     print(f'train -> {train.shape}')
     print(f'validate -> {validate.shape}')
     print(f'test -> {test.shape}')

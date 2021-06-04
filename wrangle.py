@@ -35,17 +35,6 @@ def get_telco_data():
     '''
     return pd.read_sql(sql_query, get_connection('telco_churn'))
 
-############################ Split Data Function ##############################
-
-def split_data(df):
-    '''
-    split our data,
-    takes in a pandas dataframe
-    returns: three pandas dataframes, train, test, and validate
-    '''
-    train_val, test = train_test_split(df, train_size=0.8, random_state=123)
-    train, validate = train_test_split(train_val, train_size=0.7, random_state=123)
-    return train, validate, test
 
 ############################ Wrangle Telco Function ##############################
 
@@ -120,3 +109,24 @@ def wrangle_zillow():
     zillow_df = zillow_df.dropna()
 
     return zillow_df
+
+############################ Split Data Function ##############################
+
+def split_data(df):
+    '''
+    split our data,
+    takes in a pandas dataframe
+    returns: three pandas dataframes, train, test, and validate
+    '''
+    #create train_validate and test datasets
+    train_validate, test = train_test_split(df, train_size=0.8, random_state=123)
+    #create train and validate datasets
+    train, validate = train_test_split(train_val, train_size=0.7, random_state=123)
+
+
+    # Have function print datasets shape
+
+    print(f'train -> {train.shape}')
+    print(f'validate -> {validate.shape}')
+    print(f'test -> {test.shape}')
+    return train, validate, test

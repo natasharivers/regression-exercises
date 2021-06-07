@@ -38,7 +38,7 @@ def get_telco_data():
 
 ############################ ALL Telco Data Function ##############################
 
-#create function to retrieve telco_churn data with specific columns
+#create function to retrieve telco_churn data with all columns
 def all_telco_data(df):
     '''
     This function reads in the Telco Churn data from the Codeup db

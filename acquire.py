@@ -34,7 +34,23 @@ def get_telco_data():
     WHERE contract_type_id LIKE '3'
     '''
     return pd.read_sql(telco_query, get_connection('telco_churn'))
+
+############################ ALL Telco Data Function ##############################
+
+#create function to retrieve telco_churn data with all columns
+def all_telco_data(df):
+    '''
+    This function reads in the Telco Churn data from the Codeup db
+    and returns a pandas DataFrame with all columns
+    '''
     
+    sql_query = '''
+    SELECT *
+    FROM customers
+    '''
+    return pd.read_sql(sql_query, get_connection('telco_churn'))
+    
+
 ############################ Acquire Zillow Function ##############################
 
 def get_zillow_data():
@@ -50,3 +66,17 @@ def get_zillow_data():
     WHERE propertylandusetypeid = 261
     '''
     return pd.read_sql(zillow_query, get_connection('zillow'))
+
+############################ Acquire Mall Customers Function ##############################
+
+def get_mall_customers_data():
+    '''
+    This function reads in the mall_customers data from the Codeup db
+    and returns a pandas Dataframe
+    '''
+    
+    mall_customers_query = '''
+    SELECT *
+    FROM customers
+    '''
+    return pd.read_sql(mall_customers_query, get_connection('mall_customers'))

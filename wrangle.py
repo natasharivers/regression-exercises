@@ -36,6 +36,20 @@ def get_telco_data():
     '''
     return pd.read_sql(sql_query, get_connection('telco_churn'))
 
+############################ ALL Telco Data Function ##############################
+
+#create function to retrieve telco_churn data with specific columns
+def all_telco_data(df):
+    '''
+    This function reads in the Telco Churn data from the Codeup db
+    and returns a pandas DataFrame with all columns
+    '''
+    
+    sql_query = '''
+    SELECT *
+    FROM customers
+    '''
+    return pd.read_sql(sql_query, get_connection('telco_churn'))
 
 ############################ Wrangle Telco Function ##############################
 
@@ -66,6 +80,18 @@ def wrangle_telco():
     df.total_charges = df.total_charges.fillna(df.monthly_charges)
 
     return df
+
+############################ Tenure Years Function ##############################
+
+def months_to_years(df):
+    '''
+    this function accepts the telco churn dataframe
+    and returns a dataframe with a new feature in complete years of tenure
+    '''
+    df['tenure_years'] = df.tenure / 12
+    return df
+
+###########################################################################
 
 #################################### ZILLOW #####################################
 
@@ -130,24 +156,3 @@ def split_data(df):
     print(f'test -> {test.shape}')
     return train, validate, test
 
-
-def wrangle_grades():
-    '''
-    Read student_grades csv file into a pandas DataFrame,
-    drop student_id column, replace whitespaces with NaN values,
-    drop any rows with Null values, convert all columns to int64,
-    return cleaned student grades DataFrame.
-    '''
-    # Acquire data from csv file.
-    grades = pd.read_csv('student_grades.csv')
-    
-    # Replace white space values with NaN values.
-    grades = grades.replace(r'^\s*$', np.nan, regex=True)
-    
-    # Drop all rows with NaN values.
-    df = grades.dropna()
-    
-    # Convert all columns to int64 data types.
-    df = df.astype('int')
-    
-    return df

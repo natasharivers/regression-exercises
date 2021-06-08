@@ -74,28 +74,29 @@ def baseline_mean_errors(df, y, yhat):
 
 ##################FUNCTION TO RETURN BETTER THAN BASELINE##################
 
-def better_than_baseline(df, y, yhat):
+#def better_than_baseline(df, y, yhat):
     '''
     This function takes in actual value and predicted value
     then returns true if your model performs better than the baseline, otherwise false
     '''
     #calculate the rmse 
-    df['residuals']= df[y]- df[yhat]
-    sse = (df.residuals **2).sum()
-    n = df.shape[0]
-    mse = sse/n
-    rmse = math.sqrt(mse)
+ #   df['residuals']= df[y]- df[yhat]
+  #  sse = (df.residuals **2).sum()
+ # n = df.shape[0]
+  #  mse = sse/n
+  #  rmse = math.sqrt(mse)
 
     #calculate the rmse baseline
-    df['residuals_baseline']= df[y]- df[yhat]
-    sse_baseline = (df.residuals_baseline **2).sum()
-    n = df.shape[0]
-    mse_baseline = sse_baseline/n
-    rmse_baseline = math.sqrt(mse_baseline)
+    #df['yhat_baseline'] = df['y'].mean()
+    #df['residuals_baseline']= df[y]- df[yhat_baseline]
+    #sse_baseline = (df.residuals_baseline **2).sum()
+    #n = df.shape[0]
+    #mse_baseline = sse_baseline/n
+    #rmse_baseline = math.sqrt(mse_baseline)
 
-    if rmse < rmse_baseline:
-        return True
-    else:
-        return False
+    #if rmse > rmse_baseline:
+    #    return True
+    #else:
+    #    return False
 
 

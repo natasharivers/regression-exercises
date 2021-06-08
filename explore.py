@@ -27,10 +27,7 @@ def months_to_years(df):
 ################### Plot Variable Pairs Function ##################
 
 def plot_variable_pairs(df, target):
-    columns = df[list(df.select_dtypes(exclude = 'O').columns)].drop(columns=target)
-    sns.set(style='whitegrid', palette='muted')
-    g = sns.PairGrid(columns)
-    g = g.map(sns.regplot, line_kws={'color':'red'})
+    sns.pairplot(df, corner = True, kind= 'reg', plot_kws={'line_kws':{'color':'red'}})
 
 
 ################### Plot Cat&Cont Function ##################

@@ -100,3 +100,24 @@ def baseline_mean_errors(df, y, yhat):
     #    return False
 
 
+##################SELECT K BEST FUNCTION ##################
+
+#X- features, y- target, k-#of features
+def select_kbest(X,y,k): 
+    f_selector = SelectKBest(f_regression, k)
+    f_selector.fit(X, y)
+    k_features = X.columns[f_selector.get_support()]
+
+    return k_features
+
+##################RFE FUNCTION ##################
+
+
+def rfe(X, y, n):
+    lm = LinearRegression()
+    rfe = RFE(lm, n)
+    rfe.fit(X, y)
+    
+    n_features = X.columns[rfe.support_]
+    
+    return n_features

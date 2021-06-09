@@ -74,36 +74,25 @@ def baseline_mean_errors(df, y, yhat):
 
 ##################FUNCTION TO RETURN BETTER THAN BASELINE##################
 
-#def better_than_baseline(df, y, yhat):
-    '''
+ def better_than_baseline(actual, predicted):
+     '''
     This function takes in actual value and predicted value
     then returns true if your model performs better than the baseline, otherwise false
     '''
-    #calculate the rmse 
- #   df['residuals']= df[y]- df[yhat]
-  #  sse = (df.residuals **2).sum()
- # n = df.shape[0]
-  #  mse = sse/n
-  #  rmse = math.sqrt(mse)
+    sse_baseline = sse(actual, actual.mean())
+    sse_model = sse(actual, predicted)
 
-    #calculate the rmse baseline
-    #df['yhat_baseline'] = df['y'].mean()
-    #df['residuals_baseline']= df[y]- df[yhat_baseline]
-    #sse_baseline = (df.residuals_baseline **2).sum()
-    #n = df.shape[0]
-    #mse_baseline = sse_baseline/n
-    #rmse_baseline = math.sqrt(mse_baseline)
-
-    #if rmse > rmse_baseline:
-    #    return True
-    #else:
-    #    return False
+    return sse_model < sse_baseline
 
 
 ##################SELECT K BEST FUNCTION ##################
 
 #X- features, y- target, k-#of features
 def select_kbest(X,y,k): 
+    '''
+    This function takes in X, y and k # of features
+    then outputs: SelectKBest model
+    '''
     f_selector = SelectKBest(f_regression, k)
     f_selector.fit(X, y)
     k_features = X.columns[f_selector.get_support()]
@@ -114,6 +103,10 @@ def select_kbest(X,y,k):
 
 
 def rfe(X, y, n):
+    '''
+    This function takes in X, y and k # of features
+    then outputs: RFE model
+    '''
     lm = LinearRegression()
     rfe = RFE(lm, n)
     rfe.fit(X, y)

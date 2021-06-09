@@ -154,5 +154,6 @@ def split_data(df):
     print(f'train -> {train.shape}')
     print(f'validate -> {validate.shape}')
     print(f'test -> {test.shape}')
+   
     return train, validate, test
 
